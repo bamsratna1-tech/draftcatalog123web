@@ -50,6 +50,42 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
+
+        /* Lightbox Styles */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        #lightbox.active {
+            display: flex;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        #lightbox-close:hover {
+            color: #f59e0b; /* amber-500 */
+        }
     </style>
 </head>
 <body class="text-gray-800 antialiased">
@@ -168,7 +204,7 @@
                             <a href="tel:+6282241622230" class="hover:text-amber-400">+62 822416 22230</a>
                         </li>
                         <li class="mt-4 pt-4 border-t border-teal-700">
-                            <strong>
+                            
                         </li>
                     </ul>
                 </div>
@@ -210,6 +246,12 @@
         </div>
     </footer>
 
+    <!-- Lightbox Element -->
+    <div id="lightbox">
+        <span id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged Product">
+    </div>
+
     <script>
         // =====================================================================
         // BRO, BACA INI UNTUK MENAMPILKAN GAMBAR ASLI:
@@ -244,8 +286,7 @@
                     { name: "Brem Madiun", price: "$2.00", image: "aset/brem.jpeg" },
                     { name: "Abon Sapi", price: "$1.50", image: "aset/abonbarokah.jpeg" },
                     { name: "Udang Krispi", price: "$2.50", image: "aset/udangkrispi.jpeg" },
-                    { name: "Bawang Goreng", price: "$2.50", image: "aset/Bawanggoreng.jpeg" },
-                    
+                    { name: "Bawang Goreng", price: "$2.50", image: "aset/Bawanggoreng.jpeg" }
                 ]
             },
             {
@@ -253,11 +294,9 @@
                 items: [
                     { name: "Minyak Urut Borneo", price: "$4.00", image: "aset/minyakurut.jpeg" },
                     { name: "Minyak Gaharu", price: "$4.50", image: "aset/gaharu.jpeg" },
-                    { name: "Minyak Goreng", price: "$6.00", image: "aset/minyak.jpeg" },
-                  
+                    { name: "Minyak Goreng", price: "$6.00", image: "aset/minyak.jpeg" }
                 ]
-
-                 },
+            },
             {
                 category: "Fruits",
                 items: [
@@ -270,15 +309,14 @@
             {
                 category: "Fashion",
                 items: [
-                    { name: "Batik Pria", price: "$15.00", image: "aset/batik.jpeg" },
-                                     
+                    { name: "Batik Pria", price: "$15.00", image: "aset/batik.jpeg" }
                 ]
-                 },
+            },
             {
                 category: "Spices & Seasoning",
                 items: [
                     { name: "BIji Pala", price: "$15.00", image: "aset/kemiri.jpeg" },
-                    { name: "Lada Hitam (Black Pepper)", price: "$10.00", image: "aset/biji.jpeg" },         
+                    { name: "Lada Hitam (Black Pepper)", price: "$10.00", image: "aset/biji.jpeg" }
                 ]
             },
             {
@@ -287,7 +325,6 @@
                     { name: "Cocochip", price: "$4.00", image: "aset/kayu.jpeg" }
                 ]
             }
-            
         ];
 
         const container = document.getElementById('catalog-container');
@@ -311,12 +348,11 @@
                 const delay = (itemIndex % 5) * 100; 
 
                 const cardHTML = `
-                    <div class="product-card scroll-anim opacity-0-init bg-white rounded-xl border border-gray-200 overflow-hidden flex flex-col h-full" style="animation-delay: ${delay}ms;">
+                    <div class="product-card scroll-anim opacity-0-init bg-white rounded-xl border border-gray-200 overflow-hidden flex flex-col h-full cursor-pointer" onclick="openLightbox('${item.image}')" style="animation-delay: ${delay}ms;">
                         <div class="relative pt-[100%] bg-gray-100 overflow-hidden group">
-                            <!-- Overlay tip ganti gambar (muncul saat di-hover/disentuh) -->
-                            <div class="absolute inset-0 bg-teal-900/80 z-10 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none p-4 text-center">
-                                <svg class="w-6 h-6 text-amber-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                <p class="text-white text-xs">Ganti URL di kodingan dengan file gambar aslimu</p>
+                            <!-- Overlay tip ganti gambar dengan ikon kaca pembesar -->
+                            <div class="absolute inset-0 bg-teal-900/40 z-10 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none p-4 text-center">
+                                <svg class="w-10 h-10 text-white drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
                             </div>
                             
                             <img src="${item.image}" alt="${item.name}" loading="lazy" 
@@ -356,6 +392,33 @@
 
             const animatedElements = document.querySelectorAll('.scroll-anim');
             animatedElements.forEach(el => observer.observe(el));
+        });
+
+        // Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        function openLightbox(imageSrc) {
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            // clear src after animation delay (optional, for smoother look)
+            setTimeout(() => {
+                if(!lightbox.classList.contains('active')) lightboxImg.src = "";
+            }, 300);
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
         });
     </script>
 </body>
