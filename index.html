@@ -86,6 +86,46 @@
         #lightbox-close:hover {
             color: #f59e0b; /* amber-500 */
         }
+
+        /* Pricelist Pop-up (Modal) Styles */
+        #pricelist-modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 118, 110, 0.9); /* teal-900 with opacity */
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        #pricelist-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-w-4xl;
+            max-height: 90vh;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        #pricelist-modal.active .modal-content {
+            transform: scale(1);
+        }
     </style>
 </head>
 <body class="text-gray-800 antialiased">
@@ -108,12 +148,22 @@
                     <a href="#home" class="hover:text-amber-400 transition-colors">Home</a>
                     <a href="#about" class="hover:text-amber-400 transition-colors">About Us</a>
                     <a href="#catalog" class="hover:text-amber-400 transition-colors">Catalog</a>
+                    <a href="#pricelist" class="hover:text-amber-400 transition-colors">Pricelist</a>
                     <a href="#contact" class="hover:text-amber-400 transition-colors">Contact</a>
                 </nav>
-                <!-- Mobile Menu Button (Visual only for simplicity in single file) -->
-                <button class="md:hidden text-amber-500 focus:outline-none">
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-amber-500 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
+            </div>
+            
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-teal-800 pt-2">
+                <a href="#home" class="block py-2 text-sm font-semibold text-teal-100 hover:text-amber-400">Home</a>
+                <a href="#about" class="block py-2 text-sm font-semibold text-teal-100 hover:text-amber-400">About Us</a>
+                <a href="#catalog" class="block py-2 text-sm font-semibold text-teal-100 hover:text-amber-400">Catalog</a>
+                <a href="#pricelist" class="block py-2 text-sm font-semibold text-teal-100 hover:text-amber-400">Pricelist</a>
+                <a href="#contact" class="block py-2 text-sm font-semibold text-teal-100 hover:text-amber-400">Contact</a>
             </div>
         </div>
     </header>
@@ -161,6 +211,40 @@
                 <div id="catalog-container"></div>
             </div>
         </section>
+
+        <!-- Pricelist Section -->
+        <section id="pricelist" class="py-16 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-12 scroll-anim opacity-0-init">
+                    <h2 class="text-4xl font-bold text-teal-900 mb-4">Pricelist Categories</h2>
+                    <p class="text-gray-600">Select a category to view  our detailed pricing.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+                    <!-- Food Category Card -->
+                    <div class="bg-slate-50 p-8 rounded-xl border border-gray-200 text-center shadow-sm hover:shadow-md transition-shadow scroll-anim opacity-0-init group cursor-pointer" onclick="openPricelist('Food')">
+                        <div class="w-16 h-16 mx-auto bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-teal-900 mb-3">Food</h3>
+                        <p class="text-gray-600 mb-8 min-h-[48px]">Includes Drink, Light Snack, Fruits, Spices & Seasoning.</p>
+                        <!-- Mengganti link mati dengan pemanggil modal JavaScript -->
+                        <button class="inline-block w-full sm:w-auto bg-teal-800 text-white font-semibold py-3 px-8 rounded-full hover:bg-amber-500 hover:text-teal-900 transition-colors duration-300">View Food Pricelist</button>
+                    </div>
+                    
+                    <!-- Non Food Category Card -->
+                    <div class="bg-slate-50 p-8 rounded-xl border border-gray-200 text-center shadow-sm hover:shadow-md transition-shadow scroll-anim opacity-0-init group cursor-pointer" onclick="openPricelist('Non Food')">
+                        <div class="w-16 h-16 mx-auto bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-teal-900 mb-3">Non Food</h3>
+                        <p class="text-gray-600 mb-8 min-h-[48px]">Includes Health Oils, Fashion, Cosmetic, Skincare, & End Products.</p>
+                        <!-- Mengganti link mati dengan pemanggil modal JavaScript -->
+                        <button class="inline-block w-full sm:w-auto bg-teal-800 text-white font-semibold py-3 px-8 rounded-full hover:bg-amber-500 hover:text-teal-900 transition-colors duration-300">View Non Food Pricelist</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer Section -->
@@ -203,8 +287,7 @@
                             <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                             <a href="tel:+6282241622230" class="hover:text-amber-400">+62 822416 22230</a>
                         </li>
-                        <li class="mt-4 pt-4 border-t border-teal-700">
-                            
+                      
                         </li>
                     </ul>
                 </div>
@@ -246,6 +329,47 @@
         </div>
     </footer>
 
+    <!-- Pricelist Modal Element -->
+    <div id="pricelist-modal">
+        <div class="modal-content max-w-4xl w-full mx-auto bg-white rounded-xl shadow-2xl flex flex-col max-h-[90vh]">
+            <!-- Header Modal -->
+            <div class="bg-teal-900 text-white p-6 flex justify-between items-center rounded-t-xl shrink-0">
+                <div>
+                    <h2 id="modal-category-title" class="text-2xl font-bold text-amber-500">Category Pricelist</h2>
+                    <p class="text-teal-100 text-sm mt-1">Estimated FOB Price (Subject to change)</p>
+                </div>
+                <button onclick="closePricelist()" class="text-teal-200 hover:text-white hover:bg-teal-800 p-2 rounded-full transition-colors focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <!-- Body Modal (Scrollable Table) -->
+            <div class="p-6 overflow-y-auto flex-grow bg-slate-50">
+                <div class="overflow-x-auto shadow-sm rounded-lg border border-gray-200">
+                    <table class="w-full text-left border-collapse min-w-[600px]">
+                        <thead class="bg-teal-50 text-teal-900">
+                            <tr>
+                                <th class="p-4 border-b-2 border-teal-100 font-semibold w-16 text-center">No</th>
+                                <th class="p-4 border-b-2 border-teal-100 font-semibold">Product Name</th>
+                                <th class="p-4 border-b-2 border-teal-100 font-semibold">Specification / MOQ</th>
+                                <th class="p-4 border-b-2 border-teal-100 font-semibold text-right">Price (USD)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pricelist-table-body" class="bg-white divide-y divide-gray-100">
+                            <!-- Table rows will be generated here via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Footer Modal -->
+            <div class="bg-white p-4 border-t border-gray-200 text-center rounded-b-xl shrink-0">
+                <p class="text-xs text-gray-500 mb-3">* Prices are for reference only. Contact us for final quotation.</p>
+                <a href="mailto:admin@scti.business" class="inline-block bg-amber-500 text-teal-900 font-bold py-2 px-6 rounded-full hover:bg-amber-400 transition-colors">Request Formal Quotation</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Lightbox Element -->
     <div id="lightbox">
         <span id="lightbox-close">&times;</span>
@@ -266,6 +390,54 @@
         //    Contoh sesudah: image: "kokona.jpg"
         // =====================================================================
         
+        // Data Array untuk Pricelist (Masing-masing 20 item dummy)
+        const pricelistData = {
+            "Food": [
+                { name: "Bandung Kokona (Instant Chocolate)", spec: "1 Box (5 Sachets) / MOQ 100 Box", price: "$5.00 / Box" },
+                { name: "Arlita Coffee Blend", spec: "250g Pouch / MOQ 50 Pcs", price: "$4.50 / Pouch" },
+                { name: "Liong Bulan Coffee", spec: "200g Pack / MOQ 100 Pack", price: "$3.00 / Pack" },
+                { name: "Drip Bag Street Coffee", spec: "1 Box (10 Drip Bags) / MOQ 50 Box", price: "$6.00 / Box" },
+                { name: "Koffiku Black Coffee", spec: "100g Sachet / MOQ 200 Sachet", price: "$3.50 / Sachet" },
+                { name: "Robusta Peaberry Premium", spec: "1Kg Roasted Beans / MOQ 20 Kg", price: "$12.50 / Kg" },
+                { name: "Tambi Green Tea", spec: "100g Loose Leaf / MOQ 50 Pack", price: "$4.00 / Pack" },
+                { name: "Esenvee Black Honey", spec: "500ml Glass Jar / MOQ 30 Jars", price: "$8.00 / Jar" },
+                { name: "Brem Madiun Traditional Snack", spec: "150g Box / MOQ 100 Box", price: "$2.00 / Box" },
+                { name: "Abon Sapi (Beef Floss)", spec: "100g Pouch / MOQ 50 Pouch", price: "$3.50 / Pouch" },
+                { name: "Udang Krispi (Crispy Shrimp)", spec: "200g Jar / MOQ 50 Jars", price: "$4.50 / Jar" },
+                { name: "Bawang Goreng (Fried Onion)", spec: "250g Jar / MOQ 50 Jars", price: "$2.50 / Jar" },
+                { name: "Nanas (Fresh Pineapple)", spec: "Grade A / MOQ 100 Kg", price: "$4.00 / Kg" },
+                { name: "Waluh (Fresh Pumpkin)", spec: "Grade A / MOQ 200 Kg", price: "$4.50 / Kg" },
+                { name: "Manggis (Mangosteen)", spec: "Premium Export / MOQ 50 Kg", price: "$6.00 / Kg" },
+                { name: "Cavendish Banana", spec: "1 Box (13.5 Kg) / MOQ 50 Box", price: "$25.00 / Box" },
+                { name: "Biji Pala (Nutmeg)", spec: "Dried Whole / MOQ 100 Kg", price: "$15.00 / Kg" },
+                { name: "Lada Hitam (Black Pepper)", spec: "Dried Whole / MOQ 100 Kg", price: "$10.00 / Kg" },
+                { name: "Organic Coconut Sugar", spec: "1Kg Block or Powder / MOQ 100 Kg", price: "$3.00 / Kg" },
+                { name: "Canned Tuna in Oil", spec: "150g Tin / MOQ 1000 Tins", price: "$1.80 / Tin" }
+            ],
+            "Non Food": [
+                { name: "Minyak Urut Borneo (Massage Oil)", spec: "100ml Bottle / MOQ 50 Bottles", price: "$4.00 / Bottle" },
+                { name: "Minyak Gaharu (Agarwood Oil)", spec: "10ml Pure / MOQ 10 Bottles", price: "$45.00 / Bottle" },
+                { name: "Virgin Coconut Oil (VCO)", spec: "500ml Bottle / MOQ 100 Bottles", price: "$6.00 / Bottle" },
+                { name: "Patchouli Essential Oil", spec: "1Kg Aluminum Can / MOQ 5 Kg", price: "$55.00 / Kg" },
+                { name: "Clove Essential Oil", spec: "1Kg Aluminum Can / MOQ 10 Kg", price: "$25.00 / Kg" },
+                { name: "Batik Pria (Men's Batik Shirt)", spec: "Cotton Print, Assorted / MOQ 50 Pcs", price: "$15.00 / Pcs" },
+                { name: "Premium Peci/Kopiah", spec: "Velvet Black / MOQ 100 Pcs", price: "$5.00 / Pcs" },
+                { name: "Sajadah (Prayer Mat)", spec: "Woven Turkish Style / MOQ 50 Pcs", price: "$8.50 / Pcs" },
+                { name: "Muslimah Hijab Pashmina", spec: "Ceruty Babydoll / MOQ 100 Pcs", price: "$4.00 / Pcs" },
+                { name: "Elegant Abaya Dress", spec: "Jetblack Fabric / MOQ 30 Pcs", price: "$22.00 / Pcs" },
+                { name: "Adult Diapers (Pampers)", spec: "1 Pack (10 Pcs) / MOQ 200 Packs", price: "$6.50 / Pack" },
+                { name: "Baby Diapers Tape", spec: "1 Pack (40 Pcs) / MOQ 200 Packs", price: "$5.00 / Pack" },
+                { name: "Whitening Skincare Serum", spec: "20ml Bottle / MOQ 100 Bottles", price: "$9.00 / Bottle" },
+                { name: "Herbal Body Scrub", spec: "250g Jar / MOQ 100 Jars", price: "$3.50 / Jar" },
+                { name: "Natural Bar Soap", spec: "100g Bar / MOQ 500 Bars", price: "$1.20 / Bar" },
+                { name: "Traditional Wall Art", spec: "Carved Wood 50x50cm / MOQ 10 Pcs", price: "$35.00 / Pcs" },
+                { name: "Cocochip (Orchid Media)", spec: "1Kg Block / MOQ 500 Kg", price: "$4.00 / Kg" },
+                { name: "Cocopeat Block", spec: "5Kg Block / MOQ 1000 Blocks", price: "$3.50 / Block" },
+                { name: "Coconut Shell Charcoal", spec: "Bulk / MOQ 1 Metric Ton", price: "$650.00 / Ton" },
+                { name: "Shisha Charcoal Briquettes", spec: "1Kg Box / MOQ 500 Boxes", price: "$1.50 / Box" }
+            ]
+        };
+
         const catalogData = [
             {
                 category: "Drink",
@@ -286,7 +458,7 @@
                     { name: "Brem Madiun", price: "$2.00", image: "aset/brem.jpeg" },
                     { name: "Abon Sapi", price: "$1.50", image: "aset/abonbarokah.jpeg" },
                     { name: "Udang Krispi", price: "$2.50", image: "aset/udangkrispi.jpeg" },
-                    { name: "Bawang Goreng", price: "$2.50", image: "aset/Bawanggoreng.jpeg" }
+                    { name: "Bawang Goreng", price: "$2.50", image: "aset/bawanggoreng.jpeg" }
                 ]
             },
             {
@@ -307,7 +479,7 @@
                 ]
             },
             {
-                category: "Fashion",
+                category: "Fashion, Cosmetic, and Skincare",
                 items: [
                     { name: "Batik Pria", price: "$15.00", image: "aset/batik.jpeg" }
                 ]
@@ -316,7 +488,9 @@
                 category: "Spices & Seasoning",
                 items: [
                     { name: "BIji Pala", price: "$15.00", image: "aset/kemiri.jpeg" },
-                    { name: "Lada Hitam (Black Pepper)", price: "$10.00", image: "aset/biji.jpeg" }
+                    { name: "Lada Hitam (Black Pepper)", price: "$10.00", image: "aset/biji.jpeg" },
+                    { name: "Lada Putih (White Pepper)", price: "$3.00", image: "aset/ladaputih.jpeg" }
+                    
                 ]
             },
             {
@@ -374,6 +548,7 @@
         });
 
         document.addEventListener("DOMContentLoaded", () => {
+            // Animasi Scroll
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -392,12 +567,79 @@
 
             const animatedElements = document.querySelectorAll('.scroll-anim');
             animatedElements.forEach(el => observer.observe(el));
+
+            // Mobile Menu Toggle Logic
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+            // Buka tutup menu saat tombol hamburger diklik
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Otomatis tutup menu setelah link diklik
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
         });
 
         // Lightbox Functionality
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxClose = document.getElementById('lightbox-close');
+
+        // Pricelist Pop-up Logic
+        const pricelistModal = document.getElementById('pricelist-modal');
+        const modalCategoryTitle = document.getElementById('modal-category-title');
+        const pricelistTableBody = document.getElementById('pricelist-table-body');
+
+        function openPricelist(category) {
+            // Set Judul
+            modalCategoryTitle.textContent = `${category} Export Pricelist`;
+            
+            // Kosongkan tabel sebelumnya
+            pricelistTableBody.innerHTML = '';
+
+            // Ambil data dari array sesuai kategori
+            const items = pricelistData[category];
+
+            if (items) {
+                // Loop data dan buat baris tabel (TR)
+                items.forEach((item, index) => {
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-teal-50 transition-colors group";
+                    
+                    tr.innerHTML = `
+                        <td class="p-4 border-b border-gray-100 text-center text-gray-500">${index + 1}</td>
+                        <td class="p-4 border-b border-gray-100 font-semibold text-teal-900 group-hover:text-amber-600 transition-colors">${item.name}</td>
+                        <td class="p-4 border-b border-gray-100 text-gray-600 text-sm">${item.spec}</td>
+                        <td class="p-4 border-b border-gray-100 font-bold text-teal-700 text-right whitespace-nowrap">${item.price}</td>
+                    `;
+                    pricelistTableBody.appendChild(tr);
+                });
+            } else {
+                pricelistTableBody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-gray-500">Pricelist updating...</td></tr>';
+            }
+
+            // Tampilkan modal
+            pricelistModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Kunci scroll background
+        }
+
+        function closePricelist() {
+            pricelistModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Buka kunci scroll
+        }
+
+        // Tutup modal jika user klik area gelap di luar kotak putih
+        pricelistModal.addEventListener('click', (e) => {
+            if (e.target === pricelistModal) {
+                closePricelist();
+            }
+        });
 
         function openLightbox(imageSrc) {
             lightboxImg.src = imageSrc;
