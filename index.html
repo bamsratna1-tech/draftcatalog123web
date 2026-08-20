@@ -145,7 +145,7 @@
                     </div>
                 </div>
                 <nav class="hidden md:flex gap-6 font-semibold text-sm">
-                    <a href="#home" class="hover:text-amber-400 transition-colors">Home</a>
+                    <a href="https://scti.business/" target="_blank" class="hover:text-amber-400 transition-colors">Home</a>
                     <a href="#about" class="hover:text-amber-400 transition-colors">About Us</a>
                     <a href="#catalog" class="hover:text-amber-400 transition-colors">Catalog</a>
                     <a href="#pricelist" class="hover:text-amber-400 transition-colors">Pricelist</a>
@@ -217,36 +217,39 @@
             <div class="container mx-auto px-4 lg:px-8">
                 <div class="text-center mb-12 scroll-anim opacity-0-init">
                     <h2 class="text-4xl font-bold text-teal-900 mb-4">Pricelist Categories</h2>
-                    <p class="text-gray-600">Select a category to view  our detailed pricing.</p>
+                    <p class="text-gray-600">Select a category to view or download our detailed pricing.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
                     <!-- Food Category Card -->
                     <div class="bg-slate-50 p-8 rounded-xl border border-gray-200 text-center shadow-sm hover:shadow-md transition-shadow scroll-anim opacity-0-init group cursor-pointer" onclick="openPricelist('Food')">
-                        <div class="w-16 h-16 mx-auto bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <div class="w-16 h-16 mx-auto bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden p-3">
+                            <!-- ========================================== -->
+                            <!-- GANTI SRC DI BAWAH DENGAN GAMBAR IKON FOOD MILIKMU (misal: src="aset/icon-food.png") -->
+                            <!-- ========================================== -->
+                            <img src="https://png.pngtree.com/png-vector/20230801/ourmid/pngtree-fresh-food-icon-with-bread-and-produce-vector-png-image_6829151.png" alt="Food Icon" class="w-full h-full object-contain">
                         </div>
                         <h3 class="text-2xl font-bold text-teal-900 mb-3">Food</h3>
                         <p class="text-gray-600 mb-8 min-h-[48px]">Includes Drink, Light Snack, Fruits, Spices & Seasoning.</p>
-                        <!-- Mengganti link mati dengan pemanggil modal JavaScript -->
                         <button class="inline-block w-full sm:w-auto bg-teal-800 text-white font-semibold py-3 px-8 rounded-full hover:bg-amber-500 hover:text-teal-900 transition-colors duration-300">View Food Pricelist</button>
                     </div>
                     
                     <!-- Non Food Category Card -->
                     <div class="bg-slate-50 p-8 rounded-xl border border-gray-200 text-center shadow-sm hover:shadow-md transition-shadow scroll-anim opacity-0-init group cursor-pointer" onclick="openPricelist('Non Food')">
-                        <div class="w-16 h-16 mx-auto bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        <div class="w-16 h-16 mx-auto bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden p-3">
+                            <!-- ========================================== -->
+                            <!-- GANTI SRC DI BAWAH DENGAN GAMBAR IKON NON-FOOD MILIKMU (misal: src="aset/icon-nonfood.png") -->
+                            <!-- ========================================== -->
+                            <img src="https://uxwing.com/wp-content/themes/uxwing/download/signs-and-symbols/no-food-icon.png" alt="Non Food Icon" class="w-full h-full object-contain">
                         </div>
                         <h3 class="text-2xl font-bold text-teal-900 mb-3">Non Food</h3>
                         <p class="text-gray-600 mb-8 min-h-[48px]">Includes Health Oils, Fashion, Cosmetic, Skincare, & End Products.</p>
-                        <!-- Mengganti link mati dengan pemanggil modal JavaScript -->
                         <button class="inline-block w-full sm:w-auto bg-teal-800 text-white font-semibold py-3 px-8 rounded-full hover:bg-amber-500 hover:text-teal-900 transition-colors duration-300">View Non Food Pricelist</button>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
     <!-- Footer Section -->
     <footer id="contact" class="bg-teal-900 text-teal-100 py-12 border-t-4 border-amber-500">
         <div class="container mx-auto px-4 lg:px-8">
@@ -285,10 +288,12 @@
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                            <a href="tel:+6282241622230" class="hover:text-amber-400">+62 822416 22230</a>
+                            <a href="tel:+6282241622230", class="hover:text-amber-400">+62 822416 22230</a>
+                            <a href="tel:+6285232190937"
+                            class="hover:text-amber-400">+62 852321 90937</a>
                         </li>
-                      
-                        </li>
+                    </ul>
+                </div>
                     </ul>
                 </div>
 
@@ -443,7 +448,7 @@
                 category: "Drink",
                 items: [
                     { name: "Bandung Kokona (Instant chocolate)", price: "$5.00", image: "aset/kokona.jpeg" },
-                    { name: "Arlita Coffee", price: "$4.50", image: "aset/arlita.jpeg" },
+                    { name: "Arlita Coffee", price: "$4.50", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKWUeFmy4Ee8nFGbTxX0sjXZ8uM_5hpbejtOAvKNa4rkD36wR5O34WlnRS&s=10" },
                     { name: "Liong Bulan Coffee", price: "$3.00", image: "aset/liong.jpeg" },
                     { name: "Drip Bag Street Coffee", price: "$6.00", image: "aset/dripcoffee.jpg" },
                     { name: "Koffiku Black Coffee", price: "$3.50", image: "aset/koffiku.jpeg" },
@@ -458,15 +463,32 @@
                     { name: "Brem Madiun", price: "$2.00", image: "aset/brem.jpeg" },
                     { name: "Abon Sapi", price: "$1.50", image: "aset/abonbarokah.jpeg" },
                     { name: "Udang Krispi", price: "$2.50", image: "aset/udangkrispi.jpeg" },
-                    { name: "Bawang Goreng", price: "$2.50", image: "aset/Bawanggoreng.jpeg" }
+                    { name: "Bawang Goreng", price: "$2.50", image: "aset/bawanggoreng.jpeg" }
+                ]
+            },
+            {
+                category: "Industrial Oils",
+                items: [
+                    { name: "Palm Oil", price: "$800.00 / MT", image: "https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/other/palm_oil_in_glass_bowl_other/1800x1200_palm_oil_in_glass_bowl_other.jpg?resize=750px:*&output-quality=75" },
+                    { name: "Minyak Gaharu (Agarwood Oil)", price: "$45.00", image: "aset/gaharu.jpeg" },
+                    { name: "Minyak Nilam (Patchouli Oil)", price: "$55.00", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTig14OIozmpDT6a8CiiUkObZH0f3qiHkLOn72lJM11qu2vjlV17MhY9ijH&s=10" }
                 ]
             },
             {
                 category: "Health Oils",
                 items: [
-                    { name: "Minyak Urut Borneo", price: "$4.00", image: "aset/minyakurut.jpeg" },
-                    { name: "Minyak Gaharu", price: "$4.50", image: "aset/gaharu.jpeg" },
-                    { name: "Minyak Goreng", price: "$6.00", image: "aset/minyak.jpeg" }
+                    { name: "Minyak Kayu Putih Cap Ratu", price: "$3.00", image: "https://lzd-social-img.oss-ap-southeast-1.aliyuncs.com/efd35bef5bae4e69842f1b6967083ba4_9180238ed4e44b2eb9dfe15813695fc5.png" },
+                    { name: "Minyak Cap Ayam Jago", price: "$2.50", image: "https://id-test-11.slatic.net/p/02de1598f9a1697aa60e0609e50f0dbf.jpg" },
+                
+                    { name: "Minyak Bajakah", price: "$6.00", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTig14OIozmpDT6a8CiiUkObZH0f3qiHkLOn72lJM11qu2vjlV17MhY9ijH&s=10" }
+                ]
+                 },
+                {
+                category: "Edible Oils",
+                items: [
+                    { name: "Sunflower Oil", price: "$24.47", image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/105/MTA-182573484/lily_flower_lily_flower_sunflower_oil-_minyak_biji_bunga_matahari_5_l_full01_ppb79bn4.jpg" },
+                    { name: "Minyak Cap Ayam Jago", price: "$22.50", image: "https://down-id.img.susercontent.com/file/f476bfce03c32d6b99aae3984c09b6f4@resize_w900_nl.webp" },
+                    { name: "Minyak Sawit", price: "$7.00", image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/MTA-178129011/tropical_tropical_minyak_goreng_botol_2_l_full02_ivnlu3kb.jpeg" }
                 ]
             },
             {
@@ -474,14 +496,27 @@
                 items: [
                     { name: "Nanas", price: "$4.00", image: "aset/nanas.jpeg" },
                     { name: "Pumpkin", price: "$4.50", image: "aset/waluh.jpeg" },
-                    { name: "Manggis", price: "$6.00", image: "aset/manggis.jpeg" },
+                    { name: "Alpukat Miki", price: "$4.50", image: "https://mekarbibit.com/wp-content/uploads/2025/10/IMG-20251013-WA0128.jpg" },
+                    { name: "Singkong", price: "$6.00", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDNvspzFqzi_3eLT9HkVeFLo3zJMo3EP9dfWKfoWekT_i-sPGzFqJTwNYj&s=10" },
+                    { name: "Ubi Jalar", price: "$6.00", image: "https://static.republika.co.id/uploads/images/headline_slide/ubi-jalar-_181005151324-843.jpg" },
                     { name: "Banana", price: "$25.00", image: "aset/banana.webp" }
                 ]
             },
             {
                 category: "Fashion, Cosmetic, and Skincare",
                 items: [
-                    { name: "Batik Pria", price: "$15.00", image: "aset/batik.jpeg" }
+                    { name: "Batik Pria", price: "$15.00", image: "aset/batik.jpeg" },
+                    { name: "Peci/Kopiah", price: "$5.00", image: "https://down-id.img.susercontent.com/file/id-11134207-7r991-lsp9i25ambgd18.webp" },
+                    { name: "Hijab Segiempat", price: "$8.50", image: "https://down-id.img.susercontent.com/file/id-11134207-7rask-m3n4ii1e2rtk32_tn" },
+                    { name: "Hijab Pashmina", price: "$4.00", image: "https://img.lazcdn.com/g/p/72186205dd179366af3ca709d6d07047.png_720x720q80.png" },
+                    { name: "Abaya Dress", price: "$22.00", image: "https://i.pinimg.com/736x/a1/b5/8a/a1b58a4ca0c0e781206f25a86155d40d.jpg" },
+                    { name: "Jubah Pria", price: "$15.00", image: "https://img.lazcdn.com/g/ff/kf/Sff1b6b5c9c7246d6a6714469bcfc5e94u.jpg_720x720q80.jpg" },
+                    { name: "Celana Kulot Wanita", price: "$12.00", image: "https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/0b337d64466a496a84041d6f562c7ab2~tplv-o3syd03w52-origin-jpeg.jpeg?dr=15568&t=555f072d&ps=933b5bde&shp=a3510d86&shcp=6ce186a1&idc=my2&from=2739998086" },
+                    { name: "Kemeja Pria", price: "$12.00", image: "https://down-id.img.susercontent.com/file/id-11134207-8224r-mhva6b74ds7476@resize_w900_nl.webp" },
+                     { name: "Sepatu Kulit Pria", price: "$40.00", image: "https://images.tokopedia.net/img/cache/700/VqbcmM/2023/2/24/62923062-88ea-428d-9c62-9540df21c181.jpg.webp" },
+                    { name: "Whitening Skincare Serum", price: "$39.00", image: "https://cnfstore.com/pub/media/catalog/product/cache/0917acfb43cd51fb56a17be4f1a6d76a/c/f/cf017879-2.jpg" },
+                    { name: "Herbal Body Scrub", price: "$10.50", image: "https://down-id.img.susercontent.com/file/id-11134207-822wl-mo9ds1lbdfr4fd@resize_w900_nl.webp" },
+                    { name: "Natural Bar Soap", price: "$10.20", image: "https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/aa9af5bac8634056a5c591d640e9166f~tplv-aphluv4xwc-resize-jpeg:700:0.jpeg" }
                 ]
             },
             {
@@ -490,13 +525,21 @@
                     { name: "BIji Pala", price: "$15.00", image: "aset/kemiri.jpeg" },
                     { name: "Lada Hitam (Black Pepper)", price: "$10.00", image: "aset/biji.jpeg" },
                     { name: "Lada Putih (White Pepper)", price: "$3.00", image: "aset/ladaputih.jpeg" }
-                    
+
+                    ]
+            },
+            {
+                category: "Non Food",
+                items: [
+                    { name: "Cocochip", price: "$7.00", image: "aset/kayu.jpeg" },
+                    { name: "Bricket", price: "$1.70", image: "https://charcoal.pro/wp-content/uploads/2022/11/free-samples-of-coconut-charcoal-briquettes-for-shisha.jpg" }
+                 
                 ]
             },
             {
                 category: "End Products",
                 items: [
-                    { name: "Cocochip", price: "$4.00", image: "aset/kayu.jpeg" }
+                    { name: "Wood Pellet", price: "$7.80", image: "https://3.imimg.com/data3/QH/UC/MY-3095890/biomass-pellets-500x500.jpg" }
                 ]
             }
         ];
